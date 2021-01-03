@@ -74,7 +74,7 @@ Kampanya :
 <div class="sepetItemB sepetItemB2">
 <div class="adetGuncelleContent">
 <a href="" class="" style="display: none;">Azalt</a>
-<input type="number" class="textbox txtSepetAdet" id="txtbxAdet_1745" name="txtbxAdet_1745" value="1" min="1" max="999999" step="1" data-double="False">
+<input type="number" class="textbox txtSepetAdet" id="" name="" value="1" min="1" max="999999" step="1" data-double="False">
 <span class="sepetAdetMobile" style="display: none" >x <span>Adet</span></span>
 <a href="" class="" style="display: none;">Artır</a>
 <a onclick="" id="mainHolder_ucSepetim_rptSepet_lnkBtnAdetGuncelle_0" class="AdetGuncelle" href="" style="display: none;">Güncelle</a>
@@ -204,6 +204,7 @@ export default {
     computed:{
         products(){
             return this.$store.getters.cartProducts
+        
         },
            total(){
             return this.$store.getters.cartTotal

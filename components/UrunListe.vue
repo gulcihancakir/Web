@@ -95,6 +95,7 @@ methods:{
     this.$store.dispatch('addProductToCart',product)
   },
   
+  
 },
 created(){
   this.loading=true

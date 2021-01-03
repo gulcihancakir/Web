@@ -15,7 +15,7 @@ const createStore = () => {
       products: [],
       categories: [],
       cart: [],
-
+cardProduct:[],
       user: '',
       status: '',
       error: '',
@@ -32,20 +32,7 @@ const createStore = () => {
       },
       getSite: (state) => (id) => {
         return state.products.find(product => product.id === id)
-        // // console.log(product)
-        // if (!product) {
-
-        //   database.ref('/products/' + id).once('value').then((snapshot) => {
-        //     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        //     // ...
-        //   console.log(snapshot.val())
-
-        //     return snapshot.val()
-        //   });
-
-
-        // }
-        // return product
+     
 
 
       },
@@ -106,16 +93,9 @@ const createStore = () => {
 
       fetchProducts({ commit }) {
         return new Promise((resolve, reject) => {
-          //make the call
-          //run setProducts mutation 
-          // shop.getProducts(products => {
-          //   commit('setProducts', products)
-          //   resolve()
-          // })
-
+        
           firebase.database().ref('/products').once('value').then((snapshot) => {
-            //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-            // ...
+          
             commit('setProducts', snapshot.val())
           });
         })
@@ -124,16 +104,9 @@ const createStore = () => {
       },
       fetchCategory({ commit }) {
         return new Promise((resolve, reject) => {
-          //make the call
-          //run setProducts mutation 
-          // shop.getProducts(products => {
-          //   commit('setProducts', products)
-          //   resolve()
-          // })
-
+         
           firebase.database().ref('/categories').once('value').then((snapshot) => {
-            //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-            // ...
+         
             commit('setCategories', snapshot.val())
           });
         })
@@ -162,13 +135,7 @@ const createStore = () => {
         }
 
       },
-      // postUser({commit},payload){
-      //   firebase.database().ref('/users').once('value').then((snapshot) => {
-      //     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-      //     // ...
-      //     commit('setUsers', snapshot.val())
-      //   });
-      // },
+   
 
       signupAction({ commit }, payload) {
       
@@ -210,8 +177,44 @@ const createStore = () => {
             commit('setStatus', 'failure')
             commit('setError', error.message)
           })
-      }
+      },
 
+      cardAction({commit},payload){
+        const productCard={
+          title:payload.title,
+          imageUrl:payload.image,
+          price:payload.price
+        }
+        firebase.database().ref('productCard').push(productCard).
+        then((data)=>{
+          console.log(data)
+          commit('cardAction',productCard)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+
+      },
+// cardAction2({commit}){
+//   return new Promise((resolve, reject) => {
+  
+//     firebase.database().ref('/productCard').once('value').then((data) => {
+//         const product=[]
+//         const obj=data.val()
+//         for(let key in obj){
+//           product.push({
+//             title: obj[key].title,
+//             price: obj[key].price,
+//             image: obj[key].image,
+//             product: obj[key].renk,
+//             quantity: obj[key].quantity
+//           })
+//         }
+//       commit('addProductToCart', snapshot.val())
+//     });
+//   })
+
+// }
 
 
 
@@ -258,6 +261,10 @@ const createStore = () => {
       },
       setError(state, payload) {
         state.error = payload
+      },
+
+      cardMutation(state,payload){
+        state.cartProducts=payload
       }
 
 
