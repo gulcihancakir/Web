@@ -3,24 +3,7 @@
 <div class="BasketPage BasketPageeStep_1">
 
 
-<!-- <div class="Basketstep step1">
 
-<ul style="display: none;" class="mobilSepetAdim">
-<li class="onestepsec bSepet"><i></i>
-<div><span>SEPETİM</span><span class="onesteptext">Alışveriş Sepetim</span></div>
-</li>
-<li class="pasif bAdres"><i></i>
-<div><span>ADRES</span><span class="onesteptext">Adres Seçimi</span></div>
-</li>
-<li class="pasif bOdeme"><i></i>
-<div><span>ÖDEME</span><span class="onesteptext">Ödeme Bilgileri</span></div>
-</li>
-<li class="pasif bSiparis"><i></i>
-<div><span>SİPARİŞ</span><span class="onesteptext">Sipariş Onayı</span></div>
-</li>
-</ul> -->
-<!-- <a href="javascript:;" class="sepetDuzenleBtn" data-edit="0">Düzenle</a> -->
-<!-- </div> -->
 <div class="BasketDetailContainer">
 <div class="BasketDetail EmptyCart" style="display: none;">
 <div class="empty-area">
@@ -33,6 +16,7 @@
 <div class="Text">
 <div class="T">Sepetinizde Ürün Bulunamadı.</div>
 </div>
+<!-- <a href="/tunik-20" class="cart-btn next-btn alisverisedevamet" title="">Alışverişe Devam Et</a> -->
 </div>
 </div>
 </div>
@@ -41,18 +25,18 @@
 </div>
 <div class="btn">
 <nuxt-link to="/" id="linkAlisverisDevam" class="alisverisedevamet button" target="_parent">Alışverişe Devam Et</nuxt-link>
+<!-- <a id="linkAlisverisDevam" class="alisverisedevamet button" target="_parent" href="">Alışverişe Devam Et</a> -->
 
 </div>
 <div class="sepett">
 
+  <div class="duzen">
 <ul><li v-for="product in products"  :key="product.id">
- <div class="duzen">
-
 
 
 <div class="sepetItem sepetAdetTipi0">
-<div class="sepetItemB sepetItemB0 divUrunSepetResim" >
-<img class="sepetImg urunSepetResim" :src="product.image" />
+<div class="sepetItemB sepetItemB0 divUrunSepetResim" data-href="/balon-kollu-keten-tunik-990" data-productid="990" data-variantid="1745">
+<img class="sepetImg urunSepetResim" src="https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-1c8b.jpg" onerror="this.onerror=null;this.src='/Scripts/images/resimyok_ufak.jpg';">
 </div>
 <div class="sepetItemB sepetItemB1">
 <span>Minik Terzi</span>
@@ -60,22 +44,12 @@
 <span>Renk: <strong>{{product.renk}}</strong></span>
 <span>Beden: <strong>STD</strong></span>
 
-
-<!-- <span class="UrunHizliKargo" style="display:none">
-Hızlı Kargo
-</span> -->
-<!-- <span class="UrunKisiselNot" style="display:none">
-Ürün Notu : <strong></strong>
-</span>
-<span class="UrunKisiselNot SepetKampanyaTanim" style="display:none">
-Kampanya :
- </span> -->
 </div>
 <div class="sepetItemB sepetItemB2">
 <div class="adetGuncelleContent">
 <a href="" class="" style="display: none;">Azalt</a>
 <input type="number" class="textbox txtSepetAdet" id="txtbxAdet_1745" name="txtbxAdet_1745" value="1" min="1" max="999999" step="1" data-double="False">
-<span class="sepetAdetMobile" style="display: none" >x <span>Adet</span></span>
+<span class="sepetAdetMobile" style="display: none">x <span>Adet</span></span>
 <a href="" class="" style="display: none;">Artır</a>
 <a onclick="" id="mainHolder_ucSepetim_rptSepet_lnkBtnAdetGuncelle_0" class="AdetGuncelle" href="" style="display: none;">Güncelle</a>
 </div>
@@ -93,17 +67,17 @@ Kampanya :
 </div>
 </div>
 <div class="sepetItemB sepetItemB5">
-<a   id="mainHolder_ucSepetim_rptSepet_lnkBtnUrunSil_0"  class="sepet-sil" ></a>
+<a   id="mainHolder_ucSepetim_rptSepet_lnkBtnUrunSil_0" class="sepet-sil" ></a>
 </div>
-</div>
-
 </div>
 </li></ul>
 
+</div>
+<!-- kllll -->
 
 <div class="sepetListAlt">
-<div id="mainHolder_ucSepetim_divUcretsizKargoUlasim" class="hedefSatisContent" >
-{{deger}}
+<div id="mainHolder_ucSepetim_divUcretsizKargoUlasim" class="hedefSatisContent">
+Ücretsiz kargo hakkı kazanmanıza ₺351,00 kaldı!
 </div>
 <a id="mainHolder_ucSepetim_btnSepetiTemizle" class="sepetiTemizle" >Sepeti Temizle</a>
 </div>
@@ -128,22 +102,12 @@ Kampanya :
 <ul>
 <li>
 <span>Sipariş Tutarı</span>
-<span class="tut ng-binding">₺{{total}}</span>
+<span class="tut ng-binding">₺149,00</span>
 </li>
-<!-- ngIf: cart.toplamKDV != '0' && !kdvDahilGoster -->
-<!-- ngIf: cart.urunOzellestirmeFiyatlari != '0' -->
-<!-- ngIf: cart.ekVergiTutari -->
-<!-- ngIf: cart.gumrukVergisiGumruk -->
-<!-- ngIf: cart.gumrukVergisiVergi -->
-<!-- ngIf: cart.hediyeCekiIndirimi > 0 -->
-<!-- ngIf: cart.hopiParacikKullanimi > 0 -->
-<!-- ngIf: cart.hopiIndirimi > 0 -->
-<!-- ngIf: cart.puanIndirimTutari > 0 -->
-<!-- ngIf: cart.kampanyaIndirimleri > 0 -->
-<!-- ngIf: cart.indirimlerToplami > 0 && false -->
+
 <li class="genelToplam">
 <span> <b>Sepet Toplamı</b> </span>
-<span class="tut ng-binding"> <b>₺{{total}}</b></span>
+<span class="tut ng-binding"> <b>₺149,00</b></span>
 </li>
 <!-- ngIf: cart.tahminiTeslimSuresi > 0 || cart.ayniGunTeslimat -->
 </ul>
@@ -196,7 +160,7 @@ Hediye Çekleri
 </div>
 </div>
 </div> -->
-
+<ul><li v-for="product in products" :key="product.id"></li></ul>
 </div>
 </template>
 <script>
@@ -204,17 +168,8 @@ export default {
     computed:{
         products(){
             return this.$store.getters.cartProducts
-        },
-           total(){
-            return this.$store.getters.cartTotal
-      
-    },
-    deger(){
-        return this.$store.getters.toplam_tutar
+        }
     }
-
-    },
-  
 }
 </script>
 <style scoped>
@@ -277,7 +232,7 @@ body {
 }
 .BasketDetail{
    
-    height: 100%;
+    height: 241px;
 }
 .BasketDetailContainer {
     /* width: 70.5%; */
@@ -291,9 +246,7 @@ margin-left: 370px;
 }
 
 
-ul{
-    list-style:none;
-}
+
 .BasketRigth.BasketHediyeCeki {
 
     background-color: #ddd;
@@ -558,10 +511,10 @@ element {
     line-height: 20px;
 
 }
-/* .sepett .alisverisedevamet {
+.sepett .alisverisedevamet {
     float: right;
     margin-bottom: 15px;
-} */
+}
 
 
 /* .button {
@@ -704,7 +657,6 @@ a {
     font-size: 12px;
     color: #6c706d;
     cursor: pointer;
-   
 }
 #hed div.hediCekForm a:hover {
     background-color: #fc5f5e;

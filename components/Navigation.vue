@@ -13,7 +13,7 @@
 <div>
    
 <div id="divUcTopMenu">
-             <!-- <ul class="HeaderMenu2 navUl" id="HeaderMenu2">
+              <!-- <ul class="HeaderMenu2 navUl" id="HeaderMenu2">
         <li class="ulVar" v-for="item in categoryList" :key="item">
             <a v-bind:href="''" target="_self" v-bin:title="item.categoryName">
             {{item.categoryName}}
@@ -24,9 +24,10 @@
 
           
         </li>
-    </ul> -->
+    </ul>  -->
     
- <ul class="HeaderMenu2 navUl" id="HeaderMenu2">
+ <ul class="HeaderMenu2 navUl" id="HeaderMenu2" 
+         >
     <li class="ulVar">
         <a href="" target="_self" title="ÜST">ÜST</a>
         
@@ -88,67 +89,20 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-            categoryList:[
-                {
-                    categoryId:1,
-                   categoryName: "ÜST",
-                   subitem:[
-                       
-                   ]
-                },
-                {
-                     categoryId:2,
-                   categoryName: "ALT",
-                   subitem:[
-                       
-                   ]
-                },
-                {
-                     categoryId:3,
-                   categoryName: "ELBİSE",
-                   subitem:[
-
-                   ]
-                },
-                {
-                 categoryId:4,
-                   categoryName: "DIŞ GİYİM",
-                   subitem:[
-                       {name: "CEKET",},
-                       {name:"FERACE",},
-                    {name:"KAFTAN",},
-                    {name:"TRENÇKOT",},
-                    {name:"YAĞMURLUK",},
-                    {name:"KABAN"}
-                   ]
-                   },
-                   {
-                        categoryId:5,
-                   categoryName: "İÇ GİYİM",
-                   subitem:[
-                       
-                   ]
-                   },
-                   {
-                    categoryId:6,
-                   categoryName: "DENİM",
-                   subitem:[
-                       
-                   ]
-                   },
-                   {
-                        categoryId:7,
-                   categoryName: "AKSESUAR",
-                   subitem:[
-                       
-                   ]
-                   }
-
-            ]
-        }
+      data(){
+    return{
+loading:false
     }
+  },
+    computed:{
+  categories () {
+      return this.$store.getters.aCategory
+  },},
+  created(){
+  this.loading=true
+ this.$store.dispatch('fetchCategory')
+ .then(() => this.loading =false)
+},
 }
 </script>
 <style scoped>

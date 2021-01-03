@@ -58,7 +58,7 @@
 .anasayfaslider{
   width: 1170px;
   height: 390px;
-  margin-left: 350px;
+  margin-left: 340px;
   margin-top:30px;
   
 }

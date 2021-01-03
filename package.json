@@ -13,8 +13,10 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.20.1",
     "core-js": "^3.6.5",
+    "firebase": "^8.2.1",
     "nuxt": "^2.14.6",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-carousel-card": "^1.0.6"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

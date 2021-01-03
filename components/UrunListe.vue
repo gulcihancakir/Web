@@ -4,6 +4,8 @@
     <div class="ProductListContent">
       <div id="ProductPageProductList" class="ProductList sort_4">
         <div
+          :v-if="loading"
+
           class="ItemOrj col-lg-3 col-md-3 col-sm-6 col-xs-6"
           v-for="product in products"
           :key="product.id"
@@ -42,28 +44,22 @@ KDV Dahil
             </ul>
             <div class="productIcon">
               <div class="favori favoriContent-990-1745">
-                <a
-                  onclick="productFavoritesProcess(-1,2,990,1745,1,this)"
-                  init="false"
-                  data-action="1"
-                  class="favoriteslist listfavoriPasif tip"
-                  onload="urunfavoriKontrol(this,990)"
-                  title="Favorilere Ekle"
-                >
-                  Favorilere Ekle
-                </a>
+                   <font-awesome-icon :icon="['fas', 'heart']" style="color:#03a0b4; height:17px; width:17px; margin-left:12px;margin-top:10px;"  />
+               
               </div>
               <div class="mycartIcon tip" title="Sepete Ekle">
                
                   <!-- <span class="urunListeSpanSepeteEkle">Sepete Ekle</span> -->
-                  <span class="urunListeSpanSepeteEkle"><nuxt-link to="/sepetSlider">Sepete Ekle</nuxt-link></span>
+                  <span class="urunListeSpanSepeteEkle"><a @click="addProductToCart(product)">Sepete Ekle</a></span>
+  
                
               </div>
               <div class="examineIcon tip detailLink" title="Ürünü İncele">
                 
-                <a class="detailUrl" data-id="990"> <i class="fas fa-search"></i>Ürünü İncele 
+            
+                   <font-awesome-icon :icon="['fas', 'search']" style="color:#03a0b4; height:15px; width:15px; margin:10px"  />
                
-              ></a>
+              
               <!-- <fa :icon="['fas','search']">Ürünü İncele</fa> -->
               </div>
             </div>
@@ -77,95 +73,40 @@ KDV Dahil
 
 // import shop from '@/api/shop'
 import store from '@/store/index'
+import defaultProject from '@/plugins/firebase'
 
 export default {
   
+  data(){
+    return{
+loading:false
+    }
+  },
 
 computed:{
   products () {
       return this.$store.getters.availableProducts
-  }
+  },
+
+       
+},
+methods:{
+  addProductToCart(product){
+    this.$store.dispatch('addProductToCart',product)
+  },
+  
 },
 created(){
+  this.loading=true
  this.$store.dispatch('fetchProducts')
+ .then(() => this.loading =false)
 },
+mounted(){
+console.log({f:defaultProject})
+}
 
-  // data() {
-  //   return {
-  //     productList: [
-  //       {
-  //         productId: 0,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-1c8b.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 1,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-bf42.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 2,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-e90f.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 3,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-e57c.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 4,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-32ed.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 5,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-dbe6.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 6,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-1c8b.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 7,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-dbe6.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 6,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-1c8b.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //       {
-  //         productId: 7,
-  //         productName: "Balon Kollu Keten Tunik",
-  //         productImage:
-  //           "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-dbe6.jpg",
-  //         productPrice: "149,00",
-  //       },
-  //     ],
-  //   };
-  // },
+
+
  
 };
 </script>
@@ -411,6 +352,10 @@ body {
 .ProductList .productItem .productIcon .examineIcon {
   width: 17%;
   float: right;
+  border: 1px solid #03a0b4;
+  border-radius: 0;
+  height: 35px;
+
 }
 .ProductList .productItem .productIcon .examineIcon a {
   background: 0 0;
@@ -432,11 +377,14 @@ body {
   -webkit-border-radius: 0;
 }
 .ProductList .productItem .productIcon .examineIcon a:after {
-  font-family: fontawesome;
+  /* font-family: fontawesome; */
   font-size: 16px !important;
   line-height: 35px;
-  content: "\f002";
+  /* content: "\f002"; */
   cursor:pointer;
+}
+.examineIcon{
+  cursor: pointer;
 }
 .ProductList .productItem .productIcon .favori a:after {
   font-family: fontawesome;
@@ -497,6 +445,9 @@ body {
   float: right;
   margin-left: 10px;
   margin-right: 10px;
+   border: 1px solid #03a0b4;
+  border-radius: 0;
+  height: 35px;
 }
 .ProductList .productItem .productDetail .productName a {
   font-family: open sans, sans-serif;

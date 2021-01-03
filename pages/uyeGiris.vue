@@ -1,6 +1,6 @@
 <template>
    <div class="">
-       <HeaderContent />
+       <!-- <HeaderContent /> -->
     
       <Navigation />
       <div class="uyelik">

@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="row">
       <div class="top">
@@ -21,13 +22,10 @@
         </div>
       </div>
     </div>
-    <div
-      id="carousel-example"
-      class="carousel slide hidden-xs"
-      data-ride="carousel"
-      data-type="multi"
+    <b-card-group deck 
+      
     >
-      <div class="carousel-inner">
+      <b-card class="carousel-inner">
         <div class="item active">
           <div class="row">
             <div
@@ -166,8 +164,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </b-card>
+    </b-card-group>
   </div>
 </template>
 <script>

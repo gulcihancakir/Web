@@ -1,6 +1,7 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+ 
     title: 'minikterzi',
     meta: [
       { charset: 'utf-8' },
@@ -31,9 +32,14 @@ export default {
   
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/fireauth.js',
     '~plugins/bootstrap.js',
     '~/plugins/fontawesome.js',
+    '@/plugins/vue-carousel-card'
+    
   ],
+
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -82,5 +88,6 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   },
+  
  
 }

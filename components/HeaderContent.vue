@@ -14,22 +14,21 @@
      <div class="welcome" id="divMemberPanel">
         <div class="memberWelcomeContent" id="divMemberWelcomeContent">
           <ul>
-            <li class="headerUyeGiris">
+            <li class="headerUyeGiris"  v-if="!userLogedIn">
               <NuxtLink to="/UyeGiris">Üye Girişi</NuxtLink>
 
-              <!-- <a
-                href=""
-                onclick=""
-                title="Hesabım"
-              >
-                Üye Girişi
-              </a> -->
             </li>
+            <li class="headerUyeGiris" v-else>
+              <NuxtLink @click='logoutFromFirebase'>Çıkış Yap</NuxtLink>
+
+           
+            </li>
+          
+
             <li class="headerUyeOl">
               
               <a
-                href=""
-                onclick=""
+              
                 title="Üye Ol"
               >
                 Üye Ol
@@ -48,14 +47,35 @@
         <nuxt-link to="/sepet">
            <!-- <span><img class="imagee" src="../assets/images/round_add_shopping_cart_black_18dp.png" /></span> -->
           <span class="sepetTecxt">Sepetim</span>
-          <span id="spnTopSepetToplamUrun" class="sepetUrunSayisi">0</span>
+          <span id="spnTopSepetToplamUrun" class="sepetUrunSayisi">{{urun_sayisi}}</span>
           <span class="sepetUrun">Ürün</span>
         </nuxt-link>
       </div>
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  computed:{
+ 
+ urun_sayisi(){
+            return this.$store.getters.sepet
+      
+    },
+  userLogedIn () {
+      // this.$store.getters.user
+    this.$store.getters.user
+   
+    }
+     
+},
+methods: {
+    logoutFromFirebase () {
+      this.$store.dispatch('signOutAction')
+    }
+  }
+}
+</script>
 <style scoped >
 /* .imagee{
   position: absolute;

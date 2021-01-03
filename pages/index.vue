@@ -2,15 +2,18 @@
   <div class="Container">
    
       <!-- <Logo /> -->
-      <HeaderContent />
+      
+      <!-- <HeaderContent /> -->
     
       <navigation />
      
 
       <AnasayfaSlider />
+     
       
       <UrunListe />
-      <UrunDetayBenzerUrunler/>
+     
+      <!-- <UrunDetayBenzerUrunler/> -->
      
 
       
@@ -21,7 +24,9 @@
 </template>
 
 <script scoped>
-export default {}
+import sepet from '../components/sepet.vue'
+export default {
+  components: { sepet },}
 </script>
 
 <style >

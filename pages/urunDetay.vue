@@ -1,9 +1,9 @@
 <template>
     <div>
-          <HeaderContent />
+     
     
       <Navigation />
         <UrunDetay/>
-       <UrunDetayBenzerUrunler/> 
+       <!-- <UrunDetayBenzerUrunler/>  -->
     </div>
 </template>

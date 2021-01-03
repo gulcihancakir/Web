@@ -1,6 +1,6 @@
 <template>
     <div>
-        <HeaderContent/>
+        <!-- <HeaderContent/> -->
         <sepet/>
     </div>
 </template>

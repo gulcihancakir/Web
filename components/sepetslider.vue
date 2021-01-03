@@ -57,13 +57,13 @@
 </template>
 
 <style scoped>
-/* .CartProduct {
-    display: block !important;
+.CartProduct {
+    /* display: block !important; */
     border: 0;
     position: fixed;
     right: 0;
     top: 0;
-    margin-right: -20%;
+    margin-right: 0%;
     width: 20%;
     height: 100%;
     padding: 20px;
@@ -75,7 +75,7 @@
     box-shadow: 0 0 4px 0 rgba(0,0,0,.14);
   
     transition: margin-right .7s cubic-bezier(.165,.84,.44,1);
-} */
+}
 .CartProduct ul {
     list-style-type: none;
 }
