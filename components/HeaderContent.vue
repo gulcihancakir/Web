@@ -15,11 +15,11 @@
         <div class="memberWelcomeContent" id="divMemberWelcomeContent">
           <ul>
             <li class="headerUyeGiris"  v-if="!userLogedIn">
-              <NuxtLink to="/UyeGiris">Üye Girişi</NuxtLink>
+              <a href="/UyeGiris">Üye Girişi</a>
 
             </li>
             <li class="headerUyeGiris" v-else>
-              <NuxtLink @click='logoutFromFirebase'>Çıkış Yap</NuxtLink>
+              <a @click='logoutFromFirebase'>Çıkış Yap</a>
 
            
             </li>
@@ -64,7 +64,7 @@ export default {
     },
   userLogedIn () {
       // this.$store.getters.user
-    this.$store.getters.user
+    return this.$store.getters.user
    
     }
      

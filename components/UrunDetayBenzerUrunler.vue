@@ -25,9 +25,9 @@
     <b-card-group deck 
       
     >
-      <b-card class="carousel-inner">
+      <b-card class="carousel-inner" >
         <div class="item active">
-          <div class="row">
+          <div class="row" >
             <div
               class="col-md-3 col-sm-3 
               "
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <div class="row">
             <div
               class="col-md-3 col-sm-3 "
@@ -163,7 +163,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </b-card>
     </b-card-group>
   </div>
@@ -177,29 +177,29 @@ export default {
           productId: 0,
           productName: "Balon Kollu Keten Tunik",
           productImage:
-            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-1c8b.jpg",
+            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/uzun-puffer-mont-da1c.jpg",
           productPrice: "149,00",
         },
         {
           productId: 1,
-          productName: "Balon Kollu Keten Tunik",
+          productName: "Uzun Puffer Mont",
           productImage:
-            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-bf42.jpg",
-          productPrice: "149,00",
+            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/uzun-puffer-mont-0a5b.jpg",
+          productPrice: "500,00",
         },
         {
           productId: 2,
-          productName: "Balon Kollu Keten Tunik",
+          productName: "Uzun Puffer Mont",
           productImage:
-            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/balon-kollu-keten-tunik-e90f.jpg",
-          productPrice: "149,00",
+            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/uzun-puffer-mont-266b.jpg",
+          productPrice: "289,00",
         },
         {
           productId: 3,
-          productName: "Balon Kollu Keten Tunik",
+          productName: "Belden Büzgülü Puffer Mont",
           productImage:
-            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-e57c.jpg",
-          productPrice: "149,00",
+            "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/belden-buzgulu-puffer-mont-2045.jpg",
+          productPrice: "289,00",
         },
         {
           productId: 4,
@@ -213,7 +213,7 @@ export default {
           productName: "Balon Kollu Keten Tunik",
           productImage:
             "https://www.minikterzi.com/Uploads/UrunResimleri/thumb/dugmeli-havuc-pantolon-dbe6.jpg",
-          productPrice: "149,00",
+          productPrice: "289,00",
         },
         {
           productId: 6,
@@ -247,6 +247,32 @@ export default {
     };
   },
 
+computed:{
+  products () {
+      return this.$store.getters.availableProducts
+  },
+
+       
+},
+methods:{
+  addProductToCart(product){
+    this.$store.dispatch('addProductToCart',product)
+  },
+  
+  
+},
+created(){
+
+ this.$store.dispatch('fetchProducts')
+ 
+},
+// mounted(){
+// console.log({f:defaultProject})
+// }
+
+
+
+ 
 };
 </script>
 <style scoped>

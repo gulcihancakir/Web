@@ -388,7 +388,6 @@ return{
     id:this.$route.params.id
 }
 },
-   
     computed:{
         post(){
             console.log(this.$store.getters.getSite(this.$route.params.id))

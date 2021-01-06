@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 // import shop from '@/api/shop'
 import firebase from '@/plugins/firebase'
+// import { resolve } from 'core-js/fn/promise'
 
 // import { resolve } from 'core-js/fn/promise'
 
@@ -114,7 +115,22 @@ cardProduct:[],
 
       },
       
-      
+      // fetchCartItem({commit}){
+        
+     
+      //        var usr=firebase.auth().currentUser
+            
+            
+      //        firebase.database().ref("/usr"+usr.uid+"cart").once('value').then((snapshot)=>{
+      //          if(snapshot.val() != null){
+                
+
+      //          commit('pushProductToCart',snapshot.val())
+
+      //          }
+      //        })
+          
+      // },
 
       addProductToCart(context, product) {
         if (product.stock > 0) {
@@ -131,9 +147,19 @@ cardProduct:[],
           }
           context.commit('decrementProductStock', product)
           // console.log("3")
-
+          
+           var pid=product
+          //  var quantity=product.quantity
+           var newItem={product}
+            var usr=firebase.auth().currentUser
+            console.log(usr)
+            if (usr){
+              firebase.database().ref("/usr"+usr.uid+"cart").push(newItem)
+               
+            }
+           
         }
-
+        
       },
    
 
@@ -156,6 +182,7 @@ cardProduct:[],
       signInAction({ commit }, payload) {
         firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).
           then((response) => {
+            alert('basarıyla gırıs yapıldı')
             commit('setUser', response.user.uid)
             commit('setStatus', 'success')
             commit('setError', null)
@@ -169,6 +196,7 @@ cardProduct:[],
       signOutAction ( {commit}) {
         firebase.auth().signOut()
           .then((response) => {
+            alert('başarıyla çıkıs yaptınız')
             commit('setUser', null)
             commit('setStatus', 'success')
             commit('setError', null)

@@ -5,5 +5,6 @@
       <navigation />
      
       <UrunDetay/>
+      <UrunDetayBenzerUrunler/>
   </div>
 </template>
