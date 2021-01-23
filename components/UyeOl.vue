@@ -11,9 +11,9 @@
             type="text"
             placeholder="Adınız"
           />
-          <span class="alert alert-danger isRequired displayNone"
+          <!-- <span class="alert alert-danger isRequired displayNone"
             >Lütfen Adınızı Giriniz.</span
-          >
+          > -->
         </div>
         <div class="userWrapper lastDiv">
           <input
@@ -23,9 +23,9 @@
             type="text"
             placeholder="Soyadınız"
           />
-          <span class="alert alert-danger isRequired displayNone"
+          <!-- <span class="alert alert-danger isRequired displayNone"
             >Lütfen Soyadınızı Giriniz.</span
-          >
+          > -->
         </div>
         <div class="userWrapper emailDiv">
           <input
@@ -36,12 +36,12 @@
             placeholder="E-posta"
             v-model="email"
           />
-          <span class="alert alert-danger isRequired displayNone"
+          <!-- <span class="alert alert-danger isRequired displayNone"
             >Lütfen E-posta Adresinizi Giriniz.</span
           >
           <span class="alert alert-danger mailRequired displayNone"
             >Lütfen E-posta Adresinizi Kontrol Ediniz.</span
-          >
+          > -->
         </div>
         <div class="userWrapper passDiv">
           <input
@@ -52,9 +52,9 @@
             placeholder="Şifre"
             v-model="password"
           />
-          <span class="alert alert-danger isRequired displayNone"
+          <!-- <span class="alert alert-danger isRequired displayNone"
             >Lütfen Şifrenizi Giriniz..</span
-          >
+          > -->
         </div>
         <div class="userWrapper telDiv">
           <div class="intl-tel-input">
@@ -84,9 +84,9 @@
               autocomplete="off"
             />
           </div>
-          <span class="alert alert-danger isRequired displayNone"
+          <!-- <span class="alert alert-danger isRequired displayNone"
             >Lütfen Cep Telefonu Numaranızı Giriniz.</span
-          >
+          > -->
         </div>
         <span class="alert alert-danger isRequired displayNone"
           >Lütfen Cep Telefonu Numaranızı Giriniz.</span
@@ -148,7 +148,7 @@
         <span class="alert alert-danger displayNone spnSozlesmeValidation"
           >Bu Alan Zorunludur</span
         >
-        <button type="submit" class="userLoginBtn QuickMember button">
+        <button type="submit" class="userLoginBtn QuickMember button" id="QuickMember" @click="register()">
           <span>Üye Ol</span>
         </button>
       </form>

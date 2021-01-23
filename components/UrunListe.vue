@@ -73,10 +73,23 @@ KDV Dahil
 
 // import shop from '@/api/shop'
 import store from '@/store/index'
+import Vue from 'vue'
 import defaultProject from '@/plugins/firebase'
+import mapActions from 'vuex'
+
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// import  FontAwesomeIcon  from '@fortawesome/vue-fontawesome';
+
+// library.add(faCoffee);
+
+// Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 export default {
-  
+  components:{
+FontAwesomeIcon
+  },
   data(){
     return{
 loading:false
@@ -91,6 +104,7 @@ computed:{
        
 },
 methods:{
+
   addProductToCart(product){
     this.$store.dispatch('addProductToCart',product)
   },

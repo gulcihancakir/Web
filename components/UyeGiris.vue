@@ -6,7 +6,7 @@
           <div class="userLeftBox">
             <div>
               <span class="spanTitle"> Üye Girişi </span>
-              <form @submit.prevent="login">
+              <form @submit.prevent="login" >
                 <div class="userWrapper emailDiv">
                   <input
                     class="textbox txtUyeGirisEmail"
@@ -55,9 +55,9 @@
                         name="txtUyeGirisOtp"
                         placeholder="OTP"
                       />
-                      <label class="isRequired alert alert-danger"
+                      <!-- <label class="isRequired alert alert-danger"
                         >Bu Alan Zorunludur</label
-                      >
+                      > -->
 
                       <input
                         class="textbox"
@@ -66,9 +66,9 @@
                         placeholder="OTP"
                       />
 
-                      <label class="isRequired alert alert-danger"
+                      <!-- <label class="isRequired alert alert-danger"
                         >Bu Alan Zorunludur</label
-                      >
+                      > -->
                     </div>
                     <div
                       class="userWrapper xIDDiv divUyeGirisIDDiv"
@@ -89,25 +89,26 @@
                         name="txtGuvenlikKodu"
                         placeholder="Güvenlik Kodu"
                       />
-                      <label class="isRequired alert alert-danger displayNone"
+                      <!-- <label class="isRequired alert alert-danger displayNone"
                         >Hatalı güvenlik kodu, lütfen tekrar deneyiniz.</label
-                      >
+                      > -->
                     </div>
 
                     <button
                       type="submit"
                       class="userLoginBtn button"
-                      onclick=""
+                      id="Loginbtn"
+                      @click="login()"
                     >
                       <span>Giriş Yap</span>
                     </button>
 
-                    <a
+                    <!-- <a
                       class="userSignUp"
                       href="/UyeOl.aspx"
                       style="display: none"
                       >Üye değilsen ÜYE OL</a
-                    >
+                    > -->
 
                     <div class="abc">
                       <label class="uyeGirisBeniHatirla">
@@ -134,23 +135,58 @@
 
 
 <script>
-import store from "@/store/index";
+import actions from "@/store/index";
+import firebase from "firebase";
+import {mapActions} from 'vuex'
 export default {
+  name: "login",
   data() {
     return {
+        isAlreadyLogged: false,
       email: "",
       password: "",
     };
   },
+  // props: {
+  //   openLogin: {
+  //     type: Boolean,
+  //     required: true,
+  //   },
+  // },
+  created(){
+   this.OnStateChanged();
+  },
   methods: {
+
+  
+     ...mapActions({
+  
+      loginn: "signInAction",
+    }),
     login() {
       const user = {
         email: this.email,
         password: this.password,
       };
+      
+      
       console.log(user);
-      this.$store.dispatch("signInAction", user);
+      // this.$store.dispatch("signInAction", user);
+      this.loginn({email:this.email,password:this.password}).then(() => {
+        this.OnStateChanged();});
+      
     },
+    OnStateChanged() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // this.isAlreadyLogged = true;
+          alert("Giriş yapılmıştır On state changed")
+          
+         } 
+        //  else this.isAlreadyLogged = false;
+      });
+    },
+    
   },
 };
 </script>

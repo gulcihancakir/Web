@@ -13,18 +13,18 @@
 <div>
    
 <div id="divUcTopMenu">
-              <!-- <ul class="HeaderMenu2 navUl" id="HeaderMenu2">
-        <li class="ulVar" v-for="item in categoryList" :key="item">
-            <a v-bind:href="''" target="_self" v-bin:title="item.categoryName">
-            {{item.categoryName}}
+              <ul class="a navUl" id="HeaderMenu2">
+        <li class="ulVar" v-for="item in categories" :key="item">
+            <a  >
+            {{item.title}}
               </a>
-            <ul v-for="i in subitem" :key="i">
+            <!-- <ul v-for="i in subitem" :key="i">
                 <li><a v-bind:href="''" target="_self" v-bin:title="i.name">{{i.name}}</a></li>
-            </ul>
+            </ul> -->
 
           
         </li>
-    </ul>  -->
+    </ul> 
     
  <ul class="HeaderMenu2 navUl" id="HeaderMenu2" 
          >
@@ -91,17 +91,18 @@
 export default {
       data(){
     return{
-loading:false
+// loading:false
     }
   },
     computed:{
   categories () {
+
       return this.$store.getters.aCategory
   },},
   created(){
-  this.loading=true
+//   this.loading=true
  this.$store.dispatch('fetchCategory')
- .then(() => this.loading =false)
+ 
 },
 }
 </script>

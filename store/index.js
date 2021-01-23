@@ -4,15 +4,13 @@ import Vue from 'vue'
 import firebase from '@/plugins/firebase'
 // import { resolve } from 'core-js/fn/promise'
 
-// import { resolve } from 'core-js/fn/promise'
 
 Vue.use(Vuex)
 
 
-const createStore = () => {
-  return new Vuex.Store({
-    state: {
-      //data
+// const createStore = () => {
+  // return new Vuex.Store({
+    export const state=()=>({  //data
       products: [],
       categories: [],
       cart: [],
@@ -20,77 +18,79 @@ cardProduct:[],
       user: '',
       status: '',
       error: '',
+})
+
+export const getters={  
+  availableProducts(state) {
+  return state.products.filter(product => product.stock > 0)
+},
+
+getSite: (state) => (id) => {
+  return state.products.find(product => product.id === id)
 
 
-    },
 
-    getters: {//computed properties
-      availableProducts(state) {
-        return state.products.filter(product => product.stock > 0)
-      },
-      aCategory: (state) => (id) => {
-        return state.categories.filter(category => category.id === id)
-      },
-      getSite: (state) => (id) => {
-        return state.products.find(product => product.id === id)
-     
+},
+aCategory: (state) => (id) => {
+  // return state.categories.
+  console.log("cgfvhgbhjnj",state.categories)
+},
+getfilterSite: (state) => (id) => {
+  return state.products.filter(product => product.id !== id)
+},
+cartProducts(state) {
+  return state.cart.map(cartItem => {
+    const product = state.products.find(product => product.id === cartItem.pid)
+    return {
+      
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      product: product.renk,
+      quantity: cartItem.quantity
 
+    }
 
-      },
-      getfilterSite: (state) => (id) => {
-        return state.products.filter(product => product.id !== id)
-      },
-      cartProducts(state) {
-        return state.cart.map(cartItem => {
-          const product = state.products.find(product => product.id === cartItem.id)
-          return {
-            title: product.title,
-            price: product.price,
-            image: product.image,
-            product: product.renk,
-            quantity: cartItem.quantity
+  })
+},
 
-          }
+cartTotal(state, getters) {
 
-        })
-      },
-
-      cartTotal(state, getters) {
-
-        return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
+  return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
 
 
-      },
-      sepet(state, getters) {
-        return getters.cartProducts.reduce((urun_sayisi, product) => urun_sayisi + product.quantity, 0)
-      },
+},
+sepet(state, getters) {
+  return getters.cartProducts.reduce((urun_sayisi, product) => urun_sayisi + product.quantity, 0)
+},
 
-      toplam_tutar(state, getters) {
-        let toplam = 500
-        getters.cartProducts.forEach(product => {
-          toplam -= product.price * product.quantity
-        });
-        if (toplam < 500 & toplam > 0) {
-          return "Ücretsiz kargo hakkı kazanmanıza ₺" + toplam + " kaldı!"
+toplam_tutar(state, getters) {
+  let toplam = 500
+  getters.cartProducts.forEach(product => {
+    toplam -= product.price * product.quantity
+  });
+  if (toplam < 500 & toplam > 0) {
+    return "Ücretsiz kargo hakkı kazanmanıza ₺" + toplam + " kaldı!"
 
-          toplam
-        }
-        else {
-          return "Kargo bedava"
-        }
+    toplam
+  }
+  else {
+    return "Kargo bedava"
+  }
 
-      },
-      status(state) {
-        return state.status
-      },
-      user(state) {
-        return state.user
-      },
-      error(state) {
-        return state.error
-      }
-    },
-    actions: {
+},
+status(state) {
+  return state.status
+},
+user(state) {
+  return state.user
+},
+error(state) {
+  return state.error
+}}
+  
+
+    export const actions={
 
       fetchProducts({ commit }) {
         return new Promise((resolve, reject) => {
@@ -222,34 +222,9 @@ cardProduct:[],
           console.log(error)
         })
 
-      },
-// cardAction2({commit}){
-//   return new Promise((resolve, reject) => {
-  
-//     firebase.database().ref('/productCard').once('value').then((data) => {
-//         const product=[]
-//         const obj=data.val()
-//         for(let key in obj){
-//           product.push({
-//             title: obj[key].title,
-//             price: obj[key].price,
-//             image: obj[key].image,
-//             product: obj[key].renk,
-//             quantity: obj[key].quantity
-//           })
-//         }
-//       commit('addProductToCart', snapshot.val())
-//     });
-//   })
+    }}
 
-// }
-
-
-
-    },
-
-
-    mutations: {
+  export const  mutations= {
       setProducts(state, products) {
         //update products
         state.products = products
@@ -260,7 +235,7 @@ cardProduct:[],
       },
       pushProductToCart(state, productId) {
         state.cart.push({
-          id: productId,
+          pid: productId,
           quantity: 1
         })
 
@@ -299,6 +274,6 @@ cardProduct:[],
     }
 
 
-  })
-}
-export default createStore
+  // })
+// }
+// export default createStore
